@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soy Candle Cost Calculator — Cost Per Soy Candle (Free, No Signup)</title>
+  <meta name="description" content="Free soy candle cost calculator. Pre-filled with typical soy wax prices to show your true cost per candle plus a profitable wholesale and retail price. No signup, runs in your browser." />
+  <meta name="keywords" content="soy candle cost calculator, soy candle cost, cost per soy candle, soy wax candle pricing, how much does a soy candle cost to make" />
+  <link rel="canonical" href="https://candlecostcalc.com/soy-candle-cost-calculator/" />
+
+  <meta property="og:title" content="Soy Candle Cost Calculator — Cost Per Soy Candle" />
+  <meta property="og:description" content="See your true cost per soy candle plus a profitable wholesale and retail price. Free, private, no signup." />
+  <meta property="og:type" content="website" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Soy Candle Cost Calculator",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any (web browser)",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": "Free tool to calculate the cost of a soy wax candle including materials, labor and overhead, with a suggested wholesale and retail price."
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does it cost to make a soy candle?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A typical 8-10 oz soy candle costs about $4 to $8 in materials. Once you add labor and overhead, the true cost is usually $9 to $16 per candle, which is what you should base your price on." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is soy wax cheaper than paraffin for candles?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Soy wax usually costs a little more per pound than paraffin, but it is popular with buyers who want natural, clean-burning candles, which lets many makers charge a premium that more than covers the difference." }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #14110d; --card: #211c15; --accent: #e08a3c; --accent-hover: #c5762d;
+      --text: #f1ece3; --muted: #b0a690; --border: #3a3226; --ok: #5fae62;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    header { text-align: center; padding: 48px 20px 24px; }
+    header h1 { font-size: 2rem; margin-bottom: 8px; }
+    header p { color: var(--muted); max-width: 620px; margin: 0 auto; }
+    .container { max-width: 720px; margin: 0 auto; padding: 0 20px 60px; }
+    .nav { text-align:center; padding:16px; font-size:.85rem; line-height:2; }
+    .nav a { color: var(--muted); text-decoration: none; }
+    .nav a:hover { color: var(--accent); }
+    .calc { border: 1px solid var(--border); border-radius: 16px; background: var(--card); padding: 28px 24px; }
+    .calc h2 { font-size: 1.15rem; margin-bottom: 16px; }
+    .field { margin-bottom: 14px; }
+    .field label { display: block; font-size: .9rem; color: var(--muted); margin-bottom: 5px; }
+    .field input { width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font-size: 1rem; }
+    .field input:focus { outline: none; border-color: var(--accent); }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .section-label { font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; color: var(--accent); margin: 22px 0 10px; font-weight: 600; }
+    .hint { font-size: .78rem; color: #80785f; margin-top: 3px; }
+    .results { margin-top: 24px; border: 1px solid var(--border); border-radius: 16px; background: var(--bg); padding: 22px 24px; }
+    .result-row { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .result-row:last-child { border-bottom: none; }
+    .result-row .k { color: var(--muted); font-size: .95rem; }
+    .result-row .v { font-size: 1.25rem; font-weight: 700; }
+    .result-row.big .v { font-size: 1.6rem; color: var(--accent); }
+    .result-row .v.ok { color: var(--ok); }
+    .ad-slot { margin: 32px auto; max-width: 720px; min-height: 90px; border: 1px dashed var(--border); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #6b634d; font-size: .8rem; }
+    .content { margin-top: 56px; }
+    .content h2 { font-size: 1.4rem; margin: 32px 0 12px; }
+    .content h3 { font-size: 1.1rem; margin: 24px 0 8px; }
+    .content p, .content li { color: var(--muted); margin-bottom: 10px; }
+    .content ul, .content ol { padding-left: 22px; }
+    .content table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    .content th, .content td { border: 1px solid var(--border); padding: 10px; text-align: left; }
+    .content th { background: var(--card); color: var(--text); }
+    footer { text-align: center; padding: 40px 20px; color: #6b634d; border-top: 1px solid var(--border); font-size: .85rem; }
+    footer a { color: var(--muted); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../">Candle Cost</a> ·
+    <a href="../candle-pricing-calculator/">Candle Pricing</a> ·
+    <a href="../soy-candle-cost-calculator/">Soy Candle Cost</a> ·
+    <a href="../candle-profit-margin-calculator/">Profit Margin</a> ·
+    <a href="../etsy-candle-pricing-calculator/">Etsy Pricing</a>
+  </div>
+
+  <header>
+    <h1>Soy Candle Cost Calculator</h1>
+    <p>Pre-filled with typical <strong>soy wax</strong> prices. See your <strong>true cost per soy candle</strong> — materials, labor and overhead — plus a profitable wholesale and retail price. Free, no signup.</p>
+  </header>
+
+  <div class="container">
+
+    <div class="ad-slot" id="ad-top">Ad space (AdSense goes here after approval)</div>
+
+    <div class="calc">
+      <h2>Your soy candle costs</h2>
+
+      <div class="section-label">Materials (per batch)</div>
+      <div class="grid2">
+        <div class="field"><label>Soy wax cost ($ per lb)</label><input type="number" id="waxPrice" value="3.80" step="0.01" min="0" /></div>
+        <div class="field"><label>Soy wax used (lb, whole batch)</label><input type="number" id="waxQty" value="5" step="0.1" min="0" /></div>
+        <div class="field"><label>Fragrance cost ($ per oz)</label><input type="number" id="fragPrice" value="1.80" step="0.01" min="0" /></div>
+        <div class="field"><label>Fragrance used (oz, whole batch)</label><input type="number" id="fragQty" value="8" step="0.1" min="0" /></div>
+      </div>
+
+      <div class="section-label">Per-candle parts</div>
+      <div class="grid2">
+        <div class="field"><label>Container / jar ($ each)</label><input type="number" id="jar" value="1.25" step="0.01" min="0" /></div>
+        <div class="field"><label>Wick ($ each)</label><input type="number" id="wick" value="0.20" step="0.01" min="0" /></div>
+        <div class="field"><label>Label + packaging ($ each)</label><input type="number" id="packaging" value="0.90" step="0.01" min="0" /></div>
+        <div class="field"><label>Candles made (this batch)</label><input type="number" id="yield" value="10" step="1" min="1" /></div>
+      </div>
+
+      <div class="section-label">Labor &amp; overhead</div>
+      <div class="grid2">
+        <div class="field"><label>Minutes per candle</label><input type="number" id="minutes" value="12" step="1" min="0" /></div>
+        <div class="field"><label>Your hourly wage ($/hr)</label><input type="number" id="wage" value="20" step="0.5" min="0" /></div>
+        <div class="field"><label>Overhead per candle ($)</label><input type="number" id="overhead" value="0.75" step="0.01" min="0" /><div class="hint">Utilities, equipment, waste, etc.</div></div>
+      </div>
+
+      <div class="section-label">Pricing markups</div>
+      <div class="grid2">
+        <div class="field"><label>Wholesale markup (× cost)</label><input type="number" id="wholesaleX" value="2" step="0.1" min="1" /></div>
+        <div class="field"><label>Retail markup (× wholesale)</label><input type="number" id="retailX" value="2" step="0.1" min="1" /></div>
+      </div>
+    </div>
+
+    <div class="results" id="results">
+      <div class="result-row"><span class="k">Materials per candle</span><span class="v" id="rMaterials">$0.00</span></div>
+      <div class="result-row"><span class="k">Labor per candle</span><span class="v" id="rLabor">$0.00</span></div>
+      <div class="result-row"><span class="k">Overhead per candle</span><span class="v" id="rOverhead">$0.00</span></div>
+      <div class="result-row big"><span class="k">True cost per candle</span><span class="v" id="rCost">$0.00</span></div>
+      <div class="result-row big"><span class="k">Suggested wholesale price</span><span class="v" id="rWholesale">$0.00</span></div>
+      <div class="result-row big"><span class="k">Suggested retail price</span><span class="v" id="rRetail">$0.00</span></div>
+      <div class="result-row"><span class="k">Profit per candle (retail)</span><span class="v ok" id="rProfit">$0.00</span></div>
+      <div class="result-row"><span class="k">Profit margin (retail)</span><span class="v ok" id="rMargin">0%</span></div>
+    </div>
+
+    <div class="ad-slot" id="ad-mid">Ad space</div>
+
+    <div class="content">
+      <h2>How much does it cost to make a soy candle?</h2>
+      <p>A typical 8–10 oz soy candle uses about <strong>$4–$8 of materials</strong> — soy wax, fragrance oil, a jar, a wick, and a label. But that is only part of the story. Once you pay yourself for the time to pour, cure and label it, and cover a slice of your utilities and wasted test pours, the <strong>true cost is usually $9–$16 per candle</strong>. Pricing off the higher number is what keeps a soy candle business profitable.</p>
+
+      <h2>Soy candle cost breakdown (typical 8 oz)</h2>
+      <table>
+        <tr><th>Item</th><th>Typical cost</th></tr>
+        <tr><td>Soy wax</td><td>$1.20 – $2.00</td></tr>
+        <tr><td>Fragrance oil</td><td>$0.80 – $1.40</td></tr>
+        <tr><td>Jar / container</td><td>$1.00 – $1.50</td></tr>
+        <tr><td>Wick</td><td>$0.15 – $0.25</td></tr>
+        <tr><td>Label + packaging</td><td>$0.75 – $1.00</td></tr>
+        <tr><td><strong>Materials total</strong></td><td><strong>$4 – $8</strong></td></tr>
+      </table>
+
+      <h2>Frequently asked questions</h2>
+      <h3>How much does it cost to make a soy candle?</h3>
+      <p>About $4–$8 in materials, or $9–$16 once labor and overhead are included. Enter your own numbers above for an exact figure.</p>
+      <h3>Is soy wax cheaper than paraffin?</h3>
+      <p>Soy usually costs slightly more per pound, but it commands a premium with buyers who want natural, clean-burning candles — which often more than covers the difference.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>Made for candle makers. Your numbers stay on your device — nothing is uploaded.</p>
+    <p style="margin-top:8px;">&copy; <span id="year"></span> Candle Cost Calculator · A free tool for handmade sellers.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = '2026';
+    const ids = ['waxPrice','waxQty','fragPrice','fragQty','jar','wick','packaging','yield','minutes','wage','overhead','wholesaleX','retailX'];
+    const el = {};
+    ids.forEach(id => { el[id] = document.getElementById(id); el[id].addEventListener('input', calc); });
+    const num = id => parseFloat(el[id].value) || 0;
+    const money = n => '$' + n.toFixed(2);
+    function calc() {
+      const yieldCount = Math.max(num('yield'), 1);
+      const batchMaterials = num('waxPrice') * num('waxQty') + num('fragPrice') * num('fragQty');
+      const materialsPer = batchMaterials / yieldCount + num('jar') + num('wick') + num('packaging');
+      const laborPer = (num('minutes') / 60) * num('wage');
+      const overheadPer = num('overhead');
+      const cost = materialsPer + laborPer + overheadPer;
+      const wholesale = cost * num('wholesaleX');
+      const retail = wholesale * num('retailX');
+      const profit = retail - cost;
+      const margin = retail > 0 ? (profit / retail) * 100 : 0;
+      document.getElementById('rMaterials').textContent = money(materialsPer);
+      document.getElementById('rLabor').textContent = money(laborPer);
+      document.getElementById('rOverhead').textContent = money(overheadPer);
+      document.getElementById('rCost').textContent = money(cost);
+      document.getElementById('rWholesale').textContent = money(wholesale);
+      document.getElementById('rRetail').textContent = money(retail);
+      document.getElementById('rProfit').textContent = money(profit);
+      document.getElementById('rMargin').textContent = margin.toFixed(0) + '%';
+    }
+    calc();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Etsy Candle Pricing Calculator — Price Candles After Etsy Fees (Free)</title>
+  <meta name="description" content="Free Etsy candle pricing calculator. Includes Etsy listing, transaction and payment fees so you see your real take-home profit per candle. No signup, runs in your browser." />
+  <meta name="keywords" content="etsy candle pricing calculator, etsy candle fees, candle pricing etsy, etsy fee calculator candles, how to price candles on etsy" />
+  <link rel="canonical" href="https://candlecostcalc.com/etsy-candle-pricing-calculator/" />
+
+  <meta property="og:title" content="Etsy Candle Pricing Calculator — Price Candles After Etsy Fees" />
+  <meta property="og:description" content="See your real take-home profit per candle after Etsy listing, transaction and payment fees. Free, no signup." />
+  <meta property="og:type" content="website" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Etsy Candle Pricing Calculator",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any (web browser)",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": "Free tool to price candles for Etsy, including listing, transaction and payment processing fees, showing real take-home profit per candle."
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What fees does Etsy charge on a candle sale?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Etsy charges a $0.20 listing fee, a 6.5% transaction fee on the item price plus shipping, and a payment processing fee that is roughly 3% plus $0.25 in the US. This calculator subtracts all of them to show your real profit." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I price candles on Etsy to still make a profit?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Start from your true cost per candle, add your target profit, then raise the price enough to absorb roughly 10 to 13 percent in Etsy fees so your take-home profit stays where you want it." }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #14110d; --card: #211c15; --accent: #e08a3c; --accent-hover: #c5762d;
+      --text: #f1ece3; --muted: #b0a690; --border: #3a3226; --ok: #5fae62;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    header { text-align: center; padding: 48px 20px 24px; }
+    header h1 { font-size: 2rem; margin-bottom: 8px; }
+    header p { color: var(--muted); max-width: 620px; margin: 0 auto; }
+    .container { max-width: 720px; margin: 0 auto; padding: 0 20px 60px; }
+    .nav { text-align:center; padding:16px; font-size:.85rem; line-height:2; }
+    .nav a { color: var(--muted); text-decoration: none; }
+    .nav a:hover { color: var(--accent); }
+    .calc { border: 1px solid var(--border); border-radius: 16px; background: var(--card); padding: 28px 24px; }
+    .calc h2 { font-size: 1.15rem; margin-bottom: 16px; }
+    .field { margin-bottom: 14px; }
+    .field label { display: block; font-size: .9rem; color: var(--muted); margin-bottom: 5px; }
+    .field input { width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font-size: 1rem; }
+    .field input:focus { outline: none; border-color: var(--accent); }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .section-label { font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; color: var(--accent); margin: 22px 0 10px; font-weight: 600; }
+    .hint { font-size: .78rem; color: #80785f; margin-top: 3px; }
+    .results { margin-top: 24px; border: 1px solid var(--border); border-radius: 16px; background: var(--bg); padding: 22px 24px; }
+    .result-row { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .result-row:last-child { border-bottom: none; }
+    .result-row .k { color: var(--muted); font-size: .95rem; }
+    .result-row .v { font-size: 1.25rem; font-weight: 700; }
+    .result-row.big .v { font-size: 1.6rem; color: var(--accent); }
+    .result-row .v.ok { color: var(--ok); }
+    .result-row .v.neg { color: #d9694f; }
+    .ad-slot { margin: 32px auto; max-width: 720px; min-height: 90px; border: 1px dashed var(--border); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #6b634d; font-size: .8rem; }
+    .content { margin-top: 56px; }
+    .content h2 { font-size: 1.4rem; margin: 32px 0 12px; }
+    .content h3 { font-size: 1.1rem; margin: 24px 0 8px; }
+    .content p, .content li { color: var(--muted); margin-bottom: 10px; }
+    .content ul, .content ol { padding-left: 22px; }
+    .content table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    .content th, .content td { border: 1px solid var(--border); padding: 10px; text-align: left; }
+    .content th { background: var(--card); color: var(--text); }
+    footer { text-align: center; padding: 40px 20px; color: #6b634d; border-top: 1px solid var(--border); font-size: .85rem; }
+    footer a { color: var(--muted); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="../">Candle Cost</a> ·
+    <a href="../candle-pricing-calculator/">Candle Pricing</a> ·
+    <a href="../soy-candle-cost-calculator/">Soy Candle Cost</a> ·
+    <a href="../candle-profit-margin-calculator/">Profit Margin</a> ·
+    <a href="../etsy-candle-pricing-calculator/">Etsy Pricing</a>
+  </div>
+
+  <header>
+    <h1>Etsy Candle Pricing Calculator</h1>
+    <p>Etsy takes a cut of every sale. Enter your cost, price and shipping to see your <strong>real take-home profit per candle</strong> after listing, transaction and payment fees. Free, no signup.</p>
+  </header>
+
+  <div class="container">
+
+    <div class="ad-slot" id="ad-top">Ad space (AdSense goes here after approval)</div>
+
+    <div class="calc">
+      <h2>Your candle &amp; Etsy fees</h2>
+
+      <div class="section-label">Your numbers</div>
+      <div class="grid2">
+        <div class="field"><label>True cost to make ($ per candle)</label><input type="number" id="cost" value="10.79" step="0.01" min="0" /></div>
+        <div class="field"><label>Listing price ($ per candle)</label><input type="number" id="price" value="28.00" step="0.01" min="0" /></div>
+        <div class="field"><label>Shipping charged to buyer ($)</label><input type="number" id="shipping" value="6.00" step="0.01" min="0" /></div>
+        <div class="field"><label>Your shipping cost ($)</label><input type="number" id="shipCost" value="5.50" step="0.01" min="0" /><div class="hint">Postage + box + filler</div></div>
+      </div>
+
+      <div class="section-label">Etsy fees (US defaults — edit if needed)</div>
+      <div class="grid2">
+        <div class="field"><label>Listing fee ($)</label><input type="number" id="listingFee" value="0.20" step="0.01" min="0" /></div>
+        <div class="field"><label>Transaction fee (%)</label><input type="number" id="txPct" value="6.5" step="0.1" min="0" /></div>
+        <div class="field"><label>Payment processing (%)</label><input type="number" id="payPct" value="3" step="0.1" min="0" /></div>
+        <div class="field"><label>Payment processing (flat $)</label><input type="number" id="payFlat" value="0.25" step="0.01" min="0" /></div>
+      </div>
+    </div>
+
+    <div class="results" id="results">
+      <div class="result-row"><span class="k">Total Etsy fees</span><span class="v neg" id="rFees">$0.00</span></div>
+      <div class="result-row"><span class="k">Shipping profit / loss</span><span class="v" id="rShip">$0.00</span></div>
+      <div class="result-row big"><span class="k">Take-home profit per candle</span><span class="v ok" id="rProfit">$0.00</span></div>
+      <div class="result-row"><span class="k">Real profit margin</span><span class="v" id="rMargin">0%</span></div>
+    </div>
+
+    <div class="ad-slot" id="ad-mid">Ad space</div>
+
+    <div class="content">
+      <h2>How Etsy fees eat into your candle profit</h2>
+      <p>It is easy to set a $28 candle price, subtract your $11 cost, and assume you made $17. But Etsy charges a <strong>$0.20 listing fee</strong>, a <strong>6.5% transaction fee</strong> on the item price <em>and</em> the shipping you charge, plus a <strong>payment processing fee</strong> of about 3% + $0.25 in the US. Together that is often <strong>10–13% of the order</strong> — and if your shipping charge does not cover your real postage, that gap comes out of your pocket too. This calculator subtracts all of it so the number you see is what actually lands in your bank account.</p>
+
+      <h2>How to price candles on Etsy and still profit</h2>
+      <ol>
+        <li>Start with your <strong>true cost per candle</strong> (use the <a href="../">main cost calculator</a> if you need it).</li>
+        <li>Add the profit you want to keep <em>per candle</em>.</li>
+        <li>Raise the price enough to absorb ~10–13% in Etsy fees, so your take-home stays on target.</li>
+        <li>Make sure the <strong>shipping you charge</strong> covers your real postage and packaging — undercharging shipping is the most common hidden loss.</li>
+      </ol>
+
+      <h2>Typical Etsy fee breakdown on a $28 candle (+ $6 shipping)</h2>
+      <table>
+        <tr><th>Fee</th><th>Amount</th></tr>
+        <tr><td>Listing fee</td><td>$0.20</td></tr>
+        <tr><td>Transaction (6.5% of $34)</td><td>$2.21</td></tr>
+        <tr><td>Payment processing (3% + $0.25 of $34)</td><td>$1.27</td></tr>
+        <tr><td><strong>Total Etsy fees</strong></td><td><strong>≈ $3.68</strong></td></tr>
+      </table>
+
+      <h2>Frequently asked questions</h2>
+      <h3>What fees does Etsy charge on a candle sale?</h3>
+      <p>A $0.20 listing fee, 6.5% transaction fee on item + shipping, and roughly 3% + $0.25 payment processing in the US. The calculator subtracts all three.</p>
+      <h3>How do I price candles on Etsy to still make a profit?</h3>
+      <p>Start from your true cost, add your target profit, then lift the price enough to absorb ~10–13% in fees and make sure shipping charged covers real postage.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>Made for candle makers. Your numbers stay on your device — nothing is uploaded.</p>
+    <p style="margin-top:8px;">&copy; <span id="year"></span> Candle Cost Calculator · Not affiliated with Etsy, Inc.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = '2026';
+    const ids = ['cost','price','shipping','shipCost','listingFee','txPct','payPct','payFlat'];
+    const el = {};
+    ids.forEach(id => { el[id] = document.getElementById(id); el[id].addEventListener('input', calc); });
+    const num = id => parseFloat(el[id].value) || 0;
+    const money = n => '$' + n.toFixed(2);
+    function calc() {
+      const price = num('price'), shipping = num('shipping');
+      const orderTotal = price + shipping; // Etsy fees apply to item + shipping charged
+      const txFee = orderTotal * (num('txPct') / 100);
+      const payFee = orderTotal * (num('payPct') / 100) + num('payFlat');
+      const fees = num('listingFee') + txFee + payFee;
+
+      const shipDiff = shipping - num('shipCost'); // positive = shipping covers cost
+      // Take-home: price minus product cost minus fees, plus any shipping over/under
+      const profit = price - num('cost') - fees + shipDiff;
+      const margin = price > 0 ? (profit / price) * 100 : 0;
+
+      document.getElementById('rFees').textContent = '-' + money(fees);
+      const shipEl = document.getElementById('rShip');
+      shipEl.textContent = (shipDiff < 0 ? '-' : '') + money(Math.abs(shipDiff));
+      shipEl.className = 'v ' + (shipDiff < 0 ? 'neg' : 'ok');
+      const profitEl = document.getElementById('rProfit');
+      profitEl.textContent = money(profit);
+      profitEl.className = 'v ' + (profit < 0 ? 'neg' : 'ok');
+      document.getElementById('rMargin').textContent = margin.toFixed(0) + '%';
+    }
+    calc();
+  </script>
+
+</body>
+</html>
